@@ -1,7 +1,8 @@
-package top.heapoverflow.yunnote.vo;
+package top.heapoverflow.yunnote.vo.markdown;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
 import lombok.Data;
+import top.heapoverflow.yunnote.util.JsonUtils;
 
 import java.util.List;
 
@@ -15,7 +16,12 @@ public class MarkdownIndexTreeVO {
     private Integer pid;
 
     @JsonProperty("label")
-    private String name;
+    private String title;
 
     private List<MarkdownIndexTreeVO> children;
+
+    @Override
+    public String toString() {
+        return JsonUtils.toJson(this);
+    }
 }

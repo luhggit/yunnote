@@ -11,7 +11,7 @@ public class MarkdownIndex {
 
     private Integer pid;
 
-    private String name;
+    private String title;
 
     private Integer detno;
 

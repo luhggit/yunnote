@@ -1,6 +1,7 @@
 package top.heapoverflow.yunnote.service;
 
-import top.heapoverflow.yunnote.vo.MarkdownIndexTreeVO;
+import top.heapoverflow.yunnote.vo.markdown.MarkdownIndexAddVO;
+import top.heapoverflow.yunnote.vo.markdown.MarkdownIndexTreeVO;
 import java.util.List;
 
 /**
@@ -12,4 +13,11 @@ public interface MarkdownIndexService {
      * @return
      */
     List<MarkdownIndexTreeVO> getMarkdownIndex();
+
+    /**
+     * 新增markdown index
+     * @param markdownIndexAddVO
+     * @return
+     */
+    Integer addMarkdownIndex(MarkdownIndexAddVO markdownIndexAddVO);
 }

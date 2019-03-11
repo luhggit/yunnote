@@ -1,20 +1,12 @@
 package top.heapoverflow.yunnote.entity;
 
 import lombok.Data;
-import top.heapoverflow.yunnote.util.JsonUtils;
 
 import java.util.Date;
 
-/**
- * @author luhg
- */
 @Data
 public class Markdown {
     private Integer id;
-
-    private String mdContent;
-
-    private String htmlContent;
 
     private Date createTime;
 
@@ -28,8 +20,6 @@ public class Markdown {
 
     private String title;
 
-    @Override
-    public String toString() {
-        return JsonUtils.toJson(this);
-    }
+    private Integer indexId;
+
 }

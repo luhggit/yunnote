@@ -3,5 +3,15 @@ spring:
     url: jdbc:mysql://192.168.1.10:3306/selfsys?useSSL=false&useUnicode=true&characterEncoding=UTF-8&allowMultiQueries=true
     username: root
     password: root
+
 server:
   port: 9999
+
+logging:
+  level:
+    top.heapoverflow.yunnote: debug #显示sql
+    org.springframework.web.client.RestTemplate: debug #显示resttemplate请求信息
+
+mybatis:
+  mapper-locations: classpath:mapper/*.xml  #注意：一定要对应mapper映射xml文件的所在路径
+  type-aliases-package: top.heapoverflow.yunnote  # 注意：对应实体类的路径
