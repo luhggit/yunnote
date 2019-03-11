@@ -1,11 +1,13 @@
 package top.heapoverflow.yunnote.service.impl;
 
 import lombok.extern.slf4j.Slf4j;
+import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.context.junit4.SpringRunner;
 import org.springframework.transaction.annotation.Transactional;
+import top.heapoverflow.yunnote.entity.Markdown;
 import top.heapoverflow.yunnote.entity.MarkdownIndex;
 import top.heapoverflow.yunnote.entity.MarkdownWithBLOBs;
 import top.heapoverflow.yunnote.mapper.MarkdownIndexMapper;
@@ -13,6 +15,7 @@ import top.heapoverflow.yunnote.mapper.MarkdownMapper;
 import top.heapoverflow.yunnote.service.MarkdownIndexService;
 import top.heapoverflow.yunnote.vo.markdown.MarkdownIndexAddVO;
 import top.heapoverflow.yunnote.vo.markdown.MarkdownIndexTreeVO;
+import top.heapoverflow.yunnote.vo.markdown.MarkdownIndexUpdateVO;
 
 import javax.annotation.Resource;
 
@@ -36,8 +39,12 @@ public class MarkdownIndexServiceImplTest {
     @Resource
     private MarkdownMapper markdownMapper;
 
+    private MarkdownIndex markdownIndex;
+    private MarkdownWithBLOBs markdown;
+
+    @Before
     public void add() {
-        MarkdownIndex markdownIndex = new MarkdownIndex();
+        markdownIndex = new MarkdownIndex();
         markdownIndex.setTitle("root1");
         markdownIndexMapper.insertSelective(markdownIndex);
 
@@ -59,6 +66,13 @@ public class MarkdownIndexServiceImplTest {
         markdownIndex5.setTitle("root2.1");
         markdownIndex5.setPid(markdownIndex4.getId());
         markdownIndexMapper.insertSelective(markdownIndex5);
+
+        markdown = new MarkdownWithBLOBs();
+        markdown.setIndexId(markdownIndex.getId());
+        markdown.setTitle(markdownIndex.getTitle());
+        markdown.setMdContent("we");
+        markdown.setHtmlContent("q.ewho");
+        markdownMapper.insertSelective(markdown);
     }
 
     /**
@@ -66,8 +80,6 @@ public class MarkdownIndexServiceImplTest {
      */
     @Test
     public void getMarkdownIndex() {
-        add();
-
         List<MarkdownIndexTreeVO> markdownIndexTreeVOS  = markdownIndexService.getMarkdownIndex();
         log.warn(markdownIndexTreeVOS.toString());
 
@@ -115,5 +127,37 @@ public class MarkdownIndexServiceImplTest {
         assert "".equals(markdownWithBLOBs.getHtmlContent());
         assert "".equals(markdownWithBLOBs.getMdContent());
         assert "test1".equals(markdownWithBLOBs.getTitle());
+    }
+
+    /**
+     * 测试更新markdown index
+     */
+    @Test
+    public void testUdpateMarkdownIndex() {
+        MarkdownIndexUpdateVO markdownUpdateVO = new MarkdownIndexUpdateVO();
+        markdownUpdateVO.setDetno(123);
+        markdownUpdateVO.setTitle("e11w.");
+        markdownUpdateVO.setId(markdownIndex.getId());
+        markdownIndexService.updateMarkdownIndex(markdownUpdateVO);
+
+        MarkdownIndex markdownIndex2 = markdownIndexMapper.selectByPrimaryKey(markdownIndex.getId());
+        assert "e11w.".equals(markdownIndex2.getTitle());
+        assert 123 == markdownIndex2.getDetno();
+
+        MarkdownWithBLOBs markdownWithBLOBs = markdownMapper.selectByIndexId(markdownIndex.getId());
+        assert "e11w.".equals(markdownWithBLOBs.getTitle());
+    }
+
+    /**
+     * 测试删除markdown index
+     */
+    @Test
+    public void testDeleteMarkdownIndex() {
+        markdownIndexService.deleteMarkdownIndex(markdownIndex.getId());
+        MarkdownIndex markdownIndex2 = markdownIndexMapper.selectByPrimaryKey(markdownIndex.getId());
+        assert null == markdownIndex2;
+
+        MarkdownWithBLOBs withBLOBs = markdownMapper.selectByIndexId(markdownIndex.getId());
+        assert null == withBLOBs;
     }
 }

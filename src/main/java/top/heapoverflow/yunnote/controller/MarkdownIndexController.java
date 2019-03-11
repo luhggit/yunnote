@@ -6,6 +6,7 @@ import top.heapoverflow.yunnote.util.ResultUtils;
 import top.heapoverflow.yunnote.vo.BaseVO;
 import top.heapoverflow.yunnote.vo.markdown.MarkdownIndexAddVO;
 import top.heapoverflow.yunnote.vo.markdown.MarkdownIndexTreeVO;
+import top.heapoverflow.yunnote.vo.markdown.MarkdownIndexUpdateVO;
 
 import javax.annotation.Resource;
 import javax.validation.Valid;
@@ -30,12 +31,34 @@ public class MarkdownIndexController {
     }
 
     /**
-     * 新增markdown
+     * 新增markdown index
      * @param markdownIndexAddVO
      * @return
      */
-    @PostMapping("/markdown/index/add")
+    @PostMapping("/markdown/index")
     public BaseVO<Integer> addMarkdownIndex(@RequestBody @Valid MarkdownIndexAddVO markdownIndexAddVO) {
         return ResultUtils.success(markdownIndexService.addMarkdownIndex(markdownIndexAddVO));
+    }
+
+    /**
+     * 更新markdown
+     * @param markdownUpdateVO
+     * @return
+     */
+    @PatchMapping("/markdown/index")
+    public BaseVO<Void> udpateMarkdownIndex(@RequestBody @Valid MarkdownIndexUpdateVO markdownUpdateVO) {
+        markdownIndexService.updateMarkdownIndex(markdownUpdateVO);
+        return ResultUtils.success(null);
+    }
+
+    /**
+     * 删除markdown index
+     * @param id
+     * @return
+     */
+    @DeleteMapping("/markdown/index/{id}")
+    public BaseVO<Void> deleteMarkdownIndex(@PathVariable Integer id) {
+        markdownIndexService.deleteMarkdownIndex(id);
+        return ResultUtils.success(null);
     }
 }

@@ -1,7 +1,8 @@
 package top.heapoverflow.yunnote.mapper;
 
+import org.apache.ibatis.annotations.Delete;
 import org.apache.ibatis.annotations.Param;
-import org.apache.ibatis.annotations.Select;
+import org.apache.ibatis.annotations.Update;
 import top.heapoverflow.yunnote.entity.Markdown;
 import top.heapoverflow.yunnote.entity.MarkdownWithBLOBs;
 
@@ -61,4 +62,19 @@ public interface MarkdownMapper {
      * @return
      */
     MarkdownWithBLOBs selectByIndexId(@Param("indexId") Integer indexId);
+
+    /**
+     * 根据index id 删除
+     * @param indexId
+     */
+    @Delete("delete from markdown where index_id=#{indexId}")
+    void deleteByIndexId(@Param("indexId") Integer indexId);
+
+    /**
+     * 更新title
+     * @param title
+     * @param indexId
+     */
+    @Update("update markdown set title=#{title} where index_id=#{indexId}")
+    void updateMarkdownTitle(@Param("title") String title, @Param("indexId") Integer indexId);
 }

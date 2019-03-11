@@ -2,6 +2,8 @@ package top.heapoverflow.yunnote.service;
 
 import top.heapoverflow.yunnote.vo.markdown.MarkdownIndexAddVO;
 import top.heapoverflow.yunnote.vo.markdown.MarkdownIndexTreeVO;
+import top.heapoverflow.yunnote.vo.markdown.MarkdownIndexUpdateVO;
+
 import java.util.List;
 
 /**
@@ -20,4 +22,16 @@ public interface MarkdownIndexService {
      * @return
      */
     Integer addMarkdownIndex(MarkdownIndexAddVO markdownIndexAddVO);
+
+    /**
+     * 更新markdown index
+     * @param markdownUpdateVO
+     */
+    void updateMarkdownIndex(MarkdownIndexUpdateVO markdownUpdateVO);
+
+    /**
+     * 删除markdown index
+     * @param id
+     */
+    void deleteMarkdownIndex(Integer id);
 }

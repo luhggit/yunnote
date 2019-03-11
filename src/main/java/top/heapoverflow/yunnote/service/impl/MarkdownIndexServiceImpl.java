@@ -6,11 +6,15 @@ import org.springframework.transaction.annotation.Transactional;
 import top.heapoverflow.yunnote.entity.Markdown;
 import top.heapoverflow.yunnote.entity.MarkdownIndex;
 import top.heapoverflow.yunnote.entity.MarkdownWithBLOBs;
+import top.heapoverflow.yunnote.enums.StatusEnum;
+import top.heapoverflow.yunnote.exception.ServiceRuntimeException;
 import top.heapoverflow.yunnote.mapper.MarkdownIndexMapper;
 import top.heapoverflow.yunnote.mapper.MarkdownMapper;
 import top.heapoverflow.yunnote.service.MarkdownIndexService;
+import top.heapoverflow.yunnote.util.CheckUtils;
 import top.heapoverflow.yunnote.vo.markdown.MarkdownIndexAddVO;
 import top.heapoverflow.yunnote.vo.markdown.MarkdownIndexTreeVO;
+import top.heapoverflow.yunnote.vo.markdown.MarkdownIndexUpdateVO;
 
 import javax.annotation.Resource;
 import java.util.List;
@@ -102,5 +106,40 @@ public class MarkdownIndexServiceImpl implements MarkdownIndexService {
     private void setMarkdownIndexDetno(MarkdownIndex markdownIndex) {
         Integer currentMaxDetno = markdownIndexMapper.selectMaxDetnoByPid(markdownIndex.getPid());
         markdownIndex.setDetno(currentMaxDetno + 1);
+    }
+
+    /**
+     * 更新markdown index
+     * @param markdownUpdateVO
+     */
+    @Override
+    @Transactional(rollbackFor = Exception.class)
+    public void updateMarkdownIndex(MarkdownIndexUpdateVO markdownUpdateVO) {
+        Integer indexId = markdownUpdateVO.getId();
+        MarkdownIndex markdownIndexOld = markdownIndexMapper.selectByPrimaryKey(markdownUpdateVO.getId());
+
+        MarkdownIndex markdownIndex = new MarkdownIndex();
+        BeanUtils.copyProperties(markdownUpdateVO, markdownIndex);
+        // 更新markdown_index
+        if (CheckUtils.anyNotNullExceptUidAndId(markdownIndex)) {
+            markdownIndexMapper.updateByPrimaryKeySelective(markdownIndex);
+        }
+
+        // 更新title
+        String title = markdownIndex.getTitle();
+        if (!markdownIndexOld.getTitle().equals(title)) {
+            markdownMapper.updateMarkdownTitle(title, indexId);
+        }
+    }
+
+    /**
+     * 删除markdown index，注意，连markdown也一起删除！
+     * @param id
+     */
+    @Override
+    @Transactional(rollbackFor = Exception.class)
+    public void deleteMarkdownIndex(Integer id) {
+        markdownMapper.deleteByIndexId(id);
+        markdownIndexMapper.deleteByPrimaryKey(id);
     }
 }
