@@ -33,7 +33,7 @@
     delete from markdown
     where id = #{id,jdbcType=INTEGER}
   </delete>
-  <insert id="insert" parameterType="top.heapoverflow.yunnote.entity.MarkdownWithBLOBs">
+  <insert id="insert" parameterType="top.heapoverflow.yunnote.entity.MarkdownWithBLOBs" useGeneratedKeys="true" keyProperty="id">
     insert into markdown (id, create_time, last_update_time, 
       status, first_class, second_class, 
       title, index_id, html_content, 
@@ -43,7 +43,7 @@
       #{title,jdbcType=VARCHAR}, #{indexId,jdbcType=INTEGER}, #{htmlContent,jdbcType=LONGVARCHAR}, 
       #{mdContent,jdbcType=LONGVARCHAR})
   </insert>
-  <insert id="insertSelective" parameterType="top.heapoverflow.yunnote.entity.MarkdownWithBLOBs">
+  <insert id="insertSelective" parameterType="top.heapoverflow.yunnote.entity.MarkdownWithBLOBs" useGeneratedKeys="true" keyProperty="id">
     insert into markdown
     <trim prefix="(" suffix=")" suffixOverrides=",">
       <if test="id != null">
