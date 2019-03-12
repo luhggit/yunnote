@@ -10,8 +10,6 @@
     <result column="second_class" jdbcType="VARCHAR" property="secondClass" />
     <result column="title" jdbcType="VARCHAR" property="title" />
     <result column="index_id" jdbcType="INTEGER" property="indexId" />
-  </resultMap>
-  <resultMap extends="BaseResultMap" id="ResultMapWithBLOBs" type="top.heapoverflow.yunnote.entity.MarkdownWithBLOBs">
     <result column="html_content" jdbcType="LONGVARCHAR" property="htmlContent" />
     <result column="md_content" jdbcType="LONGVARCHAR" property="mdContent" />
   </resultMap>
@@ -21,7 +19,7 @@
   <sql id="Blob_Column_List">
     html_content, md_content
   </sql>
-  <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="ResultMapWithBLOBs">
+  <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
     select 
     <include refid="Base_Column_List" />
     ,
@@ -33,7 +31,7 @@
     delete from markdown
     where id = #{id,jdbcType=INTEGER}
   </delete>
-  <insert id="insert" parameterType="top.heapoverflow.yunnote.entity.MarkdownWithBLOBs" useGeneratedKeys="true" keyProperty="id">
+  <insert id="insert" parameterType="top.heapoverflow.yunnote.entity.Markdown" useGeneratedKeys="true" keyProperty="id">
     insert into markdown (id, create_time, last_update_time, 
       status, first_class, second_class, 
       title, index_id, html_content, 
@@ -43,7 +41,7 @@
       #{title,jdbcType=VARCHAR}, #{indexId,jdbcType=INTEGER}, #{htmlContent,jdbcType=LONGVARCHAR}, 
       #{mdContent,jdbcType=LONGVARCHAR})
   </insert>
-  <insert id="insertSelective" parameterType="top.heapoverflow.yunnote.entity.MarkdownWithBLOBs" useGeneratedKeys="true" keyProperty="id">
+  <insert id="insertSelective" parameterType="top.heapoverflow.yunnote.entity.Markdown" useGeneratedKeys="true" keyProperty="id">
     insert into markdown
     <trim prefix="(" suffix=")" suffixOverrides=",">
       <if test="id != null">
@@ -110,7 +108,7 @@
       </if>
     </trim>
   </insert>
-  <update id="updateByPrimaryKeySelective" parameterType="top.heapoverflow.yunnote.entity.MarkdownWithBLOBs">
+  <update id="updateByPrimaryKeySelective" parameterType="top.heapoverflow.yunnote.entity.Markdown">
     update markdown
     <set>
       <if test="createTime != null">
@@ -143,7 +141,7 @@
     </set>
     where id = #{id,jdbcType=INTEGER}
   </update>
-  <update id="updateByPrimaryKeyWithBLOBs" parameterType="top.heapoverflow.yunnote.entity.MarkdownWithBLOBs">
+  <update id="updateByPrimaryKey" parameterType="top.heapoverflow.yunnote.entity.Markdown">
     update markdown
     set create_time = #{createTime,jdbcType=TIMESTAMP},
       last_update_time = #{lastUpdateTime,jdbcType=TIMESTAMP},
@@ -156,19 +154,8 @@
       md_content = #{mdContent,jdbcType=LONGVARCHAR}
     where id = #{id,jdbcType=INTEGER}
   </update>
-  <update id="updateByPrimaryKey" parameterType="top.heapoverflow.yunnote.entity.Markdown">
-    update markdown
-    set create_time = #{createTime,jdbcType=TIMESTAMP},
-      last_update_time = #{lastUpdateTime,jdbcType=TIMESTAMP},
-      status = #{status,jdbcType=VARCHAR},
-      first_class = #{firstClass,jdbcType=VARCHAR},
-      second_class = #{secondClass,jdbcType=VARCHAR},
-      title = #{title,jdbcType=VARCHAR},
-      index_id = #{indexId,jdbcType=INTEGER}
-    where id = #{id,jdbcType=INTEGER}
-  </update>
 
-  <select id="selectByIndexId" parameterType="java.lang.Integer" resultMap="ResultMapWithBLOBs">
+  <select id="selectByIndexId" parameterType="java.lang.Integer" resultMap="BaseResultMap">
     select
     <include refid="Base_Column_List" />
     ,

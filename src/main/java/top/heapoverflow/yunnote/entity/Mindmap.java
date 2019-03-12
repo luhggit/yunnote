@@ -6,26 +6,18 @@ import top.heapoverflow.yunnote.util.JsonUtils;
 import java.util.Date;
 
 @Data
-public class Markdown {
+public class Mindmap {
     private Integer id;
+
+    private Integer indexId;
+
+    private String title;
 
     private Date createTime;
 
     private Date lastUpdateTime;
 
-    private String status;
-
-    private String firstClass;
-
-    private String secondClass;
-
-    private String title;
-
-    private Integer indexId;
-
-    private String htmlContent;
-
-    private String mdContent;
+    private String content;
 
     @Override
     public String toString() {

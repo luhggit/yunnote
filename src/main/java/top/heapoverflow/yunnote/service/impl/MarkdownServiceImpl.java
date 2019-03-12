@@ -2,7 +2,7 @@ package top.heapoverflow.yunnote.service.impl;
 
 import org.springframework.beans.BeanUtils;
 import org.springframework.stereotype.Service;
-import top.heapoverflow.yunnote.entity.MarkdownWithBLOBs;
+import top.heapoverflow.yunnote.entity.Markdown;
 import top.heapoverflow.yunnote.mapper.MarkdownMapper;
 import top.heapoverflow.yunnote.service.MarkdownService;
 import top.heapoverflow.yunnote.vo.markdown.MarkdownMsgVO;
@@ -27,7 +27,7 @@ public class MarkdownServiceImpl implements MarkdownService {
      */
     @Override
     public void updateMarkdown(MarkdownUpdateVO markdownUpdateVO) {
-        MarkdownWithBLOBs markdownWithBLOBs = new MarkdownWithBLOBs();
+        Markdown markdownWithBLOBs = new Markdown();
         BeanUtils.copyProperties(markdownUpdateVO, markdownWithBLOBs);
         markdownMapper.updateByPrimaryKeySelective(markdownWithBLOBs);
     }
@@ -39,7 +39,7 @@ public class MarkdownServiceImpl implements MarkdownService {
      */
     @Override
     public MarkdownMsgVO getMarkdownMsg(Integer id) {
-        MarkdownWithBLOBs markdown = markdownMapper.selectByPrimaryKey(id);
+        Markdown markdown = markdownMapper.selectByPrimaryKey(id);
         MarkdownMsgVO markdownMsgVO = new MarkdownMsgVO();
         BeanUtils.copyProperties(markdown, markdownMsgVO);
         return markdownMsgVO;

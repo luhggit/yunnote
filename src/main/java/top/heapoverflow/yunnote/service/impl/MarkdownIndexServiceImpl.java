@@ -4,7 +4,7 @@ import org.springframework.beans.BeanUtils;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import top.heapoverflow.yunnote.entity.MarkdownIndex;
-import top.heapoverflow.yunnote.entity.MarkdownWithBLOBs;
+import top.heapoverflow.yunnote.entity.Markdown;
 import top.heapoverflow.yunnote.mapper.MarkdownIndexMapper;
 import top.heapoverflow.yunnote.mapper.MarkdownMapper;
 import top.heapoverflow.yunnote.service.MarkdownIndexService;
@@ -88,7 +88,7 @@ public class MarkdownIndexServiceImpl implements MarkdownIndexService {
      * @param markdownIndex
      */
     private void addMarkdown(MarkdownIndex markdownIndex) {
-        MarkdownWithBLOBs markdown = new MarkdownWithBLOBs();
+        Markdown markdown = new Markdown();
         markdown.setTitle(markdownIndex.getTitle());
         markdown.setIndexId(markdownIndex.getId());
         markdown.setHtmlContent("");
@@ -123,8 +123,8 @@ public class MarkdownIndexServiceImpl implements MarkdownIndexService {
         }
 
         // 更新title
-        String title = markdownIndex.getTitle();
-        if (!markdownIndexOld.getTitle().equals(title)) {
+        String title = markdownUpdateVO.getTitle();
+        if (title != null && !markdownIndexOld.getTitle().equals(title)) {
             markdownMapper.updateMarkdownTitle(title, indexId);
         }
     }

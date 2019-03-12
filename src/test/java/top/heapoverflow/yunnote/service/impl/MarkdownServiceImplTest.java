@@ -8,7 +8,7 @@ import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.context.junit4.SpringRunner;
 import org.springframework.transaction.annotation.Transactional;
 import top.heapoverflow.yunnote.entity.MarkdownIndex;
-import top.heapoverflow.yunnote.entity.MarkdownWithBLOBs;
+import top.heapoverflow.yunnote.entity.Markdown;
 import top.heapoverflow.yunnote.mapper.MarkdownIndexMapper;
 import top.heapoverflow.yunnote.mapper.MarkdownMapper;
 import top.heapoverflow.yunnote.service.MarkdownService;
@@ -18,8 +18,6 @@ import top.heapoverflow.yunnote.vo.markdown.MarkdownUpdateVO;
 import javax.annotation.Resource;
 
 import java.util.List;
-
-import static org.junit.Assert.*;
 
 /**
  * @author lhg
@@ -40,7 +38,7 @@ public class MarkdownServiceImplTest {
     private MarkdownService markdownService;
 
     private MarkdownIndex markdownIndex;
-    private MarkdownWithBLOBs markdown;
+    private Markdown markdown;
 
     @Before
     public void add() {
@@ -48,7 +46,7 @@ public class MarkdownServiceImplTest {
         markdownIndex.setTitle("root1");
         markdownIndexMapper.insertSelective(markdownIndex);
 
-        markdown = new MarkdownWithBLOBs();
+        markdown = new Markdown();
         markdown.setIndexId(markdownIndex.getId());
         markdown.setTitle(markdownIndex.getTitle());
         markdown.setMdContent("we");
@@ -68,7 +66,7 @@ public class MarkdownServiceImplTest {
         markdownUpdateVO.setTitle(".aiewz3");
         markdownService.updateMarkdown(markdownUpdateVO);
 
-        MarkdownWithBLOBs markdownWithBLOBs = markdownMapper.selectByPrimaryKey(markdown.getId());
+        Markdown markdownWithBLOBs = markdownMapper.selectByPrimaryKey(markdown.getId());
         assert ".aewi".equals(markdownWithBLOBs.getHtmlContent());
         assert ".ae2wi".equals(markdownWithBLOBs.getMdContent());
         assert ".aiewz3".equals(markdownWithBLOBs.getTitle());

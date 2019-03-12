@@ -5,10 +5,12 @@ import org.apache.ibatis.annotations.Param;
 import org.apache.ibatis.annotations.Select;
 import org.apache.ibatis.annotations.Update;
 import top.heapoverflow.yunnote.entity.Markdown;
-import top.heapoverflow.yunnote.entity.MarkdownWithBLOBs;
 
 import java.util.List;
 
+/**
+ * @author luhg
+ */
 public interface MarkdownMapper {
     /**
      * 删除
@@ -22,38 +24,31 @@ public interface MarkdownMapper {
      * @param record
      * @return
      */
-    int insert(MarkdownWithBLOBs record);
+    int insert(Markdown record);
 
     /**
      * 插入非空
      * @param record
      * @return
      */
-    int insertSelective(MarkdownWithBLOBs record);
+    int insertSelective(Markdown record);
 
     /**
      * 查找
      * @param id
      * @return
      */
-    MarkdownWithBLOBs selectByPrimaryKey(Integer id);
+    Markdown selectByPrimaryKey(Integer id);
 
     /**
      * 更新非空
      * @param record
      * @return
      */
-    int updateByPrimaryKeySelective(MarkdownWithBLOBs record);
+    int updateByPrimaryKeySelective(Markdown record);
 
     /**
      * 更新
-     * @param record
-     * @return
-     */
-    int updateByPrimaryKeyWithBLOBs(MarkdownWithBLOBs record);
-
-    /**
-     * 更新，除markdowncontent和htmlcontent
      * @param record
      * @return
      */
@@ -64,7 +59,7 @@ public interface MarkdownMapper {
      * @param indexId
      * @return
      */
-    MarkdownWithBLOBs selectByIndexId(@Param("indexId") Integer indexId);
+    Markdown selectByIndexId(@Param("indexId") Integer indexId);
 
     /**
      * 根据index id 删除

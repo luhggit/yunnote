@@ -11,7 +11,6 @@ import top.heapoverflow.yunnote.vo.login.UserLoginVO;
 import javax.annotation.Resource;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
-import java.util.Map;
 
 /**
  * @author lhg
