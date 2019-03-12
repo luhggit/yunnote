@@ -9,6 +9,7 @@ import top.heapoverflow.yunnote.vo.markdown.MarkdownUpdateVO;
 
 import javax.annotation.Resource;
 import javax.validation.Valid;
+import java.util.List;
 
 /**
  * @author lhg
@@ -40,5 +41,15 @@ public class MarkdownController {
     @GetMapping("/markdown/{id}")
     public BaseVO<MarkdownMsgVO> getMarkdownMsg(@PathVariable Integer id) {
         return ResultUtils.success(markdownService.getMarkdownMsg(id));
+    }
+
+    /**
+     * 根据关键字进行搜索
+     * @param keyword 关键字
+     * @return markdown对应的id
+     */
+    @GetMapping("/markdown/serach")
+    public BaseVO<List<Integer>> getMarkDownByKeyword(@RequestParam("keyword") String keyword) {
+        return ResultUtils.success(markdownService.getMarkDownByKeyword(keyword));
     }
 }

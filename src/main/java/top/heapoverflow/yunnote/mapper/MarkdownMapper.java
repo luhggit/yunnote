@@ -2,9 +2,12 @@ package top.heapoverflow.yunnote.mapper;
 
 import org.apache.ibatis.annotations.Delete;
 import org.apache.ibatis.annotations.Param;
+import org.apache.ibatis.annotations.Select;
 import org.apache.ibatis.annotations.Update;
 import top.heapoverflow.yunnote.entity.Markdown;
 import top.heapoverflow.yunnote.entity.MarkdownWithBLOBs;
+
+import java.util.List;
 
 public interface MarkdownMapper {
     /**
@@ -77,4 +80,12 @@ public interface MarkdownMapper {
      */
     @Update("update markdown set title=#{title} where index_id=#{indexId}")
     void updateMarkdownTitle(@Param("title") String title, @Param("indexId") Integer indexId);
+
+    /**
+     * 根据关键字查找markdown的id
+     * @param keyword
+     * @return
+     */
+    @Select("select index_id from markdown where md_content like \"%\"#{keyword}\"%\" or title like \"%\"#{keyword}\"%\"")
+    List<Integer> selectIndexIdByKeyword(@Param("keyword") String keyword);
 }

@@ -17,6 +17,8 @@ import top.heapoverflow.yunnote.vo.markdown.MarkdownUpdateVO;
 
 import javax.annotation.Resource;
 
+import java.util.List;
+
 import static org.junit.Assert.*;
 
 /**
@@ -81,5 +83,15 @@ public class MarkdownServiceImplTest {
         assert "root1".equals(markdownMsgVO.getTitle());
         assert "we".equals(markdownMsgVO.getMdContent());
         assert "q.ewho".equals(markdownMsgVO.getHtmlContent());
+    }
+
+    /**
+     * 测试根据关键字搜索
+     */
+    @Test
+    public void testGetMarkDownByKeyword() {
+        List<Integer> ids = markdownService.getMarkDownByKeyword("ot");
+        assert 1 == ids.size();
+        assert ids.get(0).equals(markdown.getIndexId());
     }
 }

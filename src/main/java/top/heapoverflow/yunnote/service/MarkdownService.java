@@ -3,6 +3,8 @@ package top.heapoverflow.yunnote.service;
 import top.heapoverflow.yunnote.vo.markdown.MarkdownMsgVO;
 import top.heapoverflow.yunnote.vo.markdown.MarkdownUpdateVO;
 
+import java.util.List;
+
 /**
  * @author lhg
  * @date 2019-03-11 18:50
@@ -21,4 +23,11 @@ public interface MarkdownService {
      * @return
      */
     MarkdownMsgVO getMarkdownMsg(Integer id);
+
+    /**
+     * 根据关键字进行搜索
+     * @param keyword 关键字
+     * @return markdown对应的id
+     */
+    List<Integer> getMarkDownByKeyword(String keyword);
 }

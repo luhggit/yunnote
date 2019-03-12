@@ -9,6 +9,7 @@ import top.heapoverflow.yunnote.vo.markdown.MarkdownMsgVO;
 import top.heapoverflow.yunnote.vo.markdown.MarkdownUpdateVO;
 
 import javax.annotation.Resource;
+import java.util.List;
 
 /**
  * @author lhg
@@ -42,5 +43,15 @@ public class MarkdownServiceImpl implements MarkdownService {
         MarkdownMsgVO markdownMsgVO = new MarkdownMsgVO();
         BeanUtils.copyProperties(markdown, markdownMsgVO);
         return markdownMsgVO;
+    }
+
+    /**
+     * 根据关键字进行搜索
+     * @param keyword 关键字
+     * @return markdown对应的id
+     */
+    @Override
+    public List<Integer> getMarkDownByKeyword(String keyword) {
+        return markdownMapper.selectIndexIdByKeyword(keyword);
     }
 }
