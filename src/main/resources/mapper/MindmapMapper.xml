@@ -101,21 +101,13 @@
     </set>
     where id = #{id,jdbcType=INTEGER}
   </update>
-  <update id="updateByPrimaryKeyWithBLOBs" parameterType="top.heapoverflow.yunnote.entity.Mindmap">
+  <update id="updateByPrimaryKey" parameterType="top.heapoverflow.yunnote.entity.Mindmap">
     update mindmap
     set index_id = #{indexId,jdbcType=INTEGER},
       title = #{title,jdbcType=VARCHAR},
       create_time = #{createTime,jdbcType=TIMESTAMP},
       last_update_time = #{lastUpdateTime,jdbcType=TIMESTAMP},
       content = #{content,jdbcType=LONGVARCHAR}
-    where id = #{id,jdbcType=INTEGER}
-  </update>
-  <update id="updateByPrimaryKey" parameterType="top.heapoverflow.yunnote.entity.Mindmap">
-    update mindmap
-    set index_id = #{indexId,jdbcType=INTEGER},
-      title = #{title,jdbcType=VARCHAR},
-      create_time = #{createTime,jdbcType=TIMESTAMP},
-      last_update_time = #{lastUpdateTime,jdbcType=TIMESTAMP}
     where id = #{id,jdbcType=INTEGER}
   </update>
 </mapper>

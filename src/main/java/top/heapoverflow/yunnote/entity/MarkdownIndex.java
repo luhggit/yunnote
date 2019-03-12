@@ -17,7 +17,7 @@ public class MarkdownIndex {
 
     private Date createTime;
 
-    private Date updateTime;
+    private Date lastUpdateTime;
 
     @Override
     public String toString() {

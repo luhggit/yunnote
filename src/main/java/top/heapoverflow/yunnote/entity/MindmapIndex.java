@@ -17,19 +17,7 @@ public class MindmapIndex {
 
     private Date createTime;
 
-    private Date updateTime;
-
-    public Integer getId() {
-        return id;
-    }
-
-    public void setId(Integer id) {
-        this.id = id;
-    }
-
-    public Integer getPid() {
-        return pid;
-    }
+    private Date lastUpdateTime;
 
     @Override
     public String toString() {

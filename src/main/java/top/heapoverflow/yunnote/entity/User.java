@@ -3,9 +3,8 @@ package top.heapoverflow.yunnote.entity;
 import lombok.Data;
 import top.heapoverflow.yunnote.util.JsonUtils;
 
-/**
- * @author luhg
- */
+import java.util.Date;
+
 @Data
 public class User {
     private Integer id;
@@ -14,13 +13,9 @@ public class User {
 
     private String password;
 
-    public Integer getId() {
-        return id;
-    }
+    private Date createTime;
 
-    public void setId(Integer id) {
-        this.id = id;
-    }
+    private Date lastUpdateTime;
 
     @Override
     public String toString() {

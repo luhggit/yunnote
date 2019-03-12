@@ -49,13 +49,6 @@ public interface MindmapMapper {
      * @param record
      * @return
      */
-    int updateByPrimaryKeyWithBLOBs(Mindmap record);
-
-    /**
-     * 更新
-     * @param record
-     * @return
-     */
     int updateByPrimaryKey(Mindmap record);
 
     /**
