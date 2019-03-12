@@ -9,7 +9,23 @@ public enum  StatusEnum {
     /**
      * 成功
      */
-    SUCCESS(200, "成功")
+    SUCCESS(200, "成功"),
+    /**
+     * 服务器异常
+     */
+    SERVER_ERROR(500, "服务器异常"),
+    /**
+     * 参数错误
+     */
+    PARAMS_ERROR(600, "参数错误"),
+    /**
+     * 时间戳无效
+     */
+    TIMESTAMP_INVALID(1000, "时间戳无效"),
+    /**
+     * 密码错误
+     */
+    PASSWORD_INVALID(1001, "密码错误")
     ;
     private Integer code;
 

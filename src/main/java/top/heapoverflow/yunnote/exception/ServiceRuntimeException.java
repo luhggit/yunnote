@@ -1,5 +1,6 @@
 package top.heapoverflow.yunnote.exception;
 
+import lombok.Data;
 import top.heapoverflow.yunnote.enums.StatusEnum;
 
 /**
@@ -7,6 +8,7 @@ import top.heapoverflow.yunnote.enums.StatusEnum;
  * @date 2019-03-11 18:17
  * @description
  */
+@Data
 public class ServiceRuntimeException extends RuntimeException {
     private StatusEnum statusEnum;
 

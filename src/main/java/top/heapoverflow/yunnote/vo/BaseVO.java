@@ -1,5 +1,6 @@
 package top.heapoverflow.yunnote.vo;
 
+import lombok.Data;
 import top.heapoverflow.yunnote.util.JsonUtils;
 
 /**
@@ -7,6 +8,7 @@ import top.heapoverflow.yunnote.util.JsonUtils;
  * @date 2019-03-11 14:41
  * @description
  */
+@Data
 public class BaseVO<T> {
     /**
      * 状态码
@@ -22,6 +24,9 @@ public class BaseVO<T> {
      * 数据
      */
     private T data;
+
+    public BaseVO() {
+    }
 
     public BaseVO(Integer status, String msg, T data) {
         this.status = status;
