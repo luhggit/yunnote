@@ -34,9 +34,10 @@
         </javaClientGenerator>
         <!-- 要生成的表 tableName是数据库中的表名或视图名 domainObjectName是实体类名-->
         <!-- 注意多次执行会覆盖现有文件 -->
-        <table tableName="user" domainObjectName="User" enableCountByExample="false"
+        <table tableName="calendar" domainObjectName="Calendar" enableCountByExample="false"
                enableUpdateByExample="false" enableDeleteByExample="false" enableSelectByExample="false"
                selectByExampleQueryId="false">
+            <columnOverride column="content" javaType="java.lang.String" jdbcType="LONGVARCHAR" />
         </table>
     </context>
 </generatorConfiguration>

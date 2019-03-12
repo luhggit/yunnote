@@ -9,12 +9,12 @@ import java.util.Date;
  * @author luhg
  */
 @Data
-public class Mindmap {
+public class Calendar {
     private Integer id;
 
-    private Integer indexId;
+    private Integer month;
 
-    private String title;
+    private Integer year;
 
     private Date createTime;
 

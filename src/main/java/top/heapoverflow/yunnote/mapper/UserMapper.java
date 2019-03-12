@@ -4,6 +4,9 @@ import org.apache.ibatis.annotations.Param;
 import org.apache.ibatis.annotations.Select;
 import top.heapoverflow.yunnote.entity.User;
 
+/**
+ * @author luhg
+ */
 public interface UserMapper {
     /**
      * 删除

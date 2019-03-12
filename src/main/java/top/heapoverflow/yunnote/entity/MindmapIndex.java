@@ -5,6 +5,9 @@ import top.heapoverflow.yunnote.util.JsonUtils;
 
 import java.util.Date;
 
+/**
+ * @author luhg
+ */
 @Data
 public class MindmapIndex {
     private Integer id;

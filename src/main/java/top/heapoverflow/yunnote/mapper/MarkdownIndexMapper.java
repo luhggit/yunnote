@@ -6,6 +6,9 @@ import top.heapoverflow.yunnote.entity.MarkdownIndex;
 
 import java.util.List;
 
+/**
+ * @author luhg
+ */
 public interface MarkdownIndexMapper {
     /**
      * 删除
