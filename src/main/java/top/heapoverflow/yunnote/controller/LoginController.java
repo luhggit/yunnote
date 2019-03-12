@@ -1,6 +1,7 @@
 package top.heapoverflow.yunnote.controller;
 
 import org.springframework.web.bind.annotation.*;
+import top.heapoverflow.yunnote.constant.CommonConstant;
 import top.heapoverflow.yunnote.service.LoginService;
 import top.heapoverflow.yunnote.util.ResultUtils;
 import top.heapoverflow.yunnote.vo.BaseVO;
@@ -33,5 +34,20 @@ public class LoginController {
     public BaseVO<LoginResultVO> login(@RequestBody UserLoginVO userLoginVO, HttpSession session) {
         userLoginVO.setSession(session);
         return ResultUtils.success(loginService.login(userLoginVO));
+    }
+
+    /**
+     * 退出登录
+     * @param request
+     * @return
+     */
+    @GetMapping(value = "/logout")
+    public BaseVO<Boolean> logout(HttpServletRequest request) {
+        HttpSession session = request.getSession(false);
+        if (session != null) {
+            session.removeAttribute(CommonConstant.LOGIN_SUCCESS_FLAG);
+            session.invalidate();
+        }
+        return ResultUtils.success(true);
     }
 }
