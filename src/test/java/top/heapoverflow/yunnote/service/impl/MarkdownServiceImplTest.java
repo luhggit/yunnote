@@ -12,6 +12,7 @@ import top.heapoverflow.yunnote.entity.MarkdownWithBLOBs;
 import top.heapoverflow.yunnote.mapper.MarkdownIndexMapper;
 import top.heapoverflow.yunnote.mapper.MarkdownMapper;
 import top.heapoverflow.yunnote.service.MarkdownService;
+import top.heapoverflow.yunnote.vo.markdown.MarkdownMsgVO;
 import top.heapoverflow.yunnote.vo.markdown.MarkdownUpdateVO;
 
 import javax.annotation.Resource;
@@ -69,5 +70,16 @@ public class MarkdownServiceImplTest {
         assert ".aewi".equals(markdownWithBLOBs.getHtmlContent());
         assert ".ae2wi".equals(markdownWithBLOBs.getMdContent());
         assert ".aiewz3".equals(markdownWithBLOBs.getTitle());
+    }
+
+    /**
+     * 测试根据id获取
+     */
+    @Test
+    public void testGetMarkdownMsg() {
+        MarkdownMsgVO markdownMsgVO = markdownService.getMarkdownMsg(markdown.getId());
+        assert "root1".equals(markdownMsgVO.getTitle());
+        assert "we".equals(markdownMsgVO.getMdContent());
+        assert "q.ewho".equals(markdownMsgVO.getHtmlContent());
     }
 }

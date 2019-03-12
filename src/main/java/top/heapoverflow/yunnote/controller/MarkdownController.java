@@ -1,12 +1,10 @@
 package top.heapoverflow.yunnote.controller;
 
-import org.springframework.web.bind.annotation.PatchMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 import top.heapoverflow.yunnote.service.MarkdownService;
 import top.heapoverflow.yunnote.util.ResultUtils;
 import top.heapoverflow.yunnote.vo.BaseVO;
+import top.heapoverflow.yunnote.vo.markdown.MarkdownMsgVO;
 import top.heapoverflow.yunnote.vo.markdown.MarkdownUpdateVO;
 
 import javax.annotation.Resource;
@@ -32,5 +30,15 @@ public class MarkdownController {
     public BaseVO<Void> udpateMarkdownIndex(@RequestBody @Valid MarkdownUpdateVO markdownUpdateVO) {
         markdownService.updateMarkdown(markdownUpdateVO);
         return ResultUtils.success(null);
+    }
+
+    /**
+     * 根据id查找markdown
+     * @param id
+     * @return
+     */
+    @GetMapping("/markdown/{id}")
+    public BaseVO<MarkdownMsgVO> getMarkdownMsg(@PathVariable Integer id) {
+        return ResultUtils.success(markdownService.getMarkdownMsg(id));
     }
 }
