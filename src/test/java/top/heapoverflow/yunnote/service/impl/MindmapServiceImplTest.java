@@ -13,6 +13,7 @@ import top.heapoverflow.yunnote.mapper.MindmapIndexMapper;
 import top.heapoverflow.yunnote.mapper.MindmapMapper;
 import top.heapoverflow.yunnote.service.MindmapService;
 import top.heapoverflow.yunnote.vo.mindmap.MindmapMsgVO;
+import top.heapoverflow.yunnote.vo.mindmap.MindmapUpdateVO;
 
 import javax.annotation.Resource;
 
@@ -60,5 +61,20 @@ public class MindmapServiceImplTest {
         MindmapMsgVO mindmapMsgVO = mindmapService.getMindmapMsgByIndexId(mindmapIndex.getId());
         assert "q.ewho".equals(mindmapMsgVO.getContent());
         assert "root1".equals(mindmapMsgVO.getTitle());
+    }
+
+    /**
+     * 测试更新
+     */
+    @Test
+    public void testUpdateMindmap() {
+        MindmapUpdateVO mindmapUpdateVO = new MindmapUpdateVO();
+        mindmapUpdateVO.setContent("wewq");
+        mindmapUpdateVO.setId(mindmap.getId());
+
+        mindmapService.updateMindmap(mindmapUpdateVO);
+
+        Mindmap mindmap3 = mindmapMapper.selectByPrimaryKey(mindmap.getId());
+        assert "wewq".equals(mindmap3.getContent());
     }
 }

@@ -6,6 +6,7 @@ import top.heapoverflow.yunnote.entity.Mindmap;
 import top.heapoverflow.yunnote.mapper.MindmapMapper;
 import top.heapoverflow.yunnote.service.MindmapService;
 import top.heapoverflow.yunnote.vo.mindmap.MindmapMsgVO;
+import top.heapoverflow.yunnote.vo.mindmap.MindmapUpdateVO;
 
 import javax.annotation.Resource;
 
@@ -30,5 +31,17 @@ public class MindmapServiceImpl implements MindmapService {
         MindmapMsgVO mindmapMsgVO = new MindmapMsgVO();
         BeanUtils.copyProperties(mindmap, mindmapMsgVO);
         return mindmapMsgVO;
+    }
+
+    /**
+     * 更新mindmap
+     * @param mindmapUpdateVO
+     * @return
+     */
+    @Override
+    public void updateMindmap(MindmapUpdateVO mindmapUpdateVO) {
+        Mindmap mindmap = new Mindmap();
+        BeanUtils.copyProperties(mindmapUpdateVO, mindmap);
+        mindmapMapper.updateByPrimaryKeySelective(mindmap);
     }
 }

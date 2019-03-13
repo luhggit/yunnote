@@ -28,7 +28,7 @@ public class MarkdownController {
      * @return
      */
     @PatchMapping("/markdown")
-    public BaseVO<Void> udpateMarkdownIndex(@RequestBody @Valid MarkdownUpdateVO markdownUpdateVO) {
+    public BaseVO<Void> updateMarkdown(@RequestBody @Valid MarkdownUpdateVO markdownUpdateVO) {
         markdownService.updateMarkdown(markdownUpdateVO);
         return ResultUtils.success(null);
     }

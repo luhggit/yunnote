@@ -1,6 +1,7 @@
 package top.heapoverflow.yunnote.service;
 
 import top.heapoverflow.yunnote.vo.mindmap.MindmapMsgVO;
+import top.heapoverflow.yunnote.vo.mindmap.MindmapUpdateVO;
 
 /**
  * @author lhg
@@ -14,4 +15,10 @@ public interface MindmapService {
      * @return
      */
     MindmapMsgVO getMindmapMsgByIndexId(Integer indexId);
+
+    /**
+     * 更新mindmap
+     * @param mindmapUpdateVO
+     */
+    void updateMindmap(MindmapUpdateVO mindmapUpdateVO);
 }
