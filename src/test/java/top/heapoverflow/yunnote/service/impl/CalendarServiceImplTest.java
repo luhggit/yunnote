@@ -79,4 +79,15 @@ public class CalendarServiceImplTest {
         List<CalendarQueryResultVO> queryResultVOS = calendarService.getCalendarEventByMonth(calendarQueryVO);
         assert 3 == queryResultVOS.size();
     }
+
+    /**
+     * 测试删除
+     */
+    @Test
+    public void testDeleteById() {
+        calendarService.deleteById(calendar.getId());
+
+        Calendar calendar2 = calendarMapper.selectByPrimaryKey(calendar.getId());
+        assert null == calendar2;
+    }
 }

@@ -82,5 +82,14 @@ public class CalendarServiceImpl implements CalendarService {
 
         return resultVOS;
     }
+
+    /**
+     * 根据id删除calendar
+     * @param id 主键
+     */
+    @Override
+    public void deleteById(Integer id) {
+       calendarMapper.deleteByPrimaryKey(id);
+    }
 }
 

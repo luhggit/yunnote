@@ -25,4 +25,10 @@ public interface CalendarService {
      * @return
      */
     List<CalendarQueryResultVO> getCalendarEventByMonth(CalendarQueryVO queryVO);
+
+    /**
+     * 根据id删除calendar
+     * @param id 主键
+     */
+    void deleteById(Integer id);
 }

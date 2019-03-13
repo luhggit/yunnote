@@ -45,4 +45,14 @@ public class CalendarController {
         queryVO.setMonth(month);
         return ResultUtils.success(calendarService.getCalendarEventByMonth(queryVO));
     }
+
+    /**
+     * 删除calendar
+     * @param id
+     */
+    @DeleteMapping("/delete/{id}")
+    public BaseVO<Void> deleteById(@PathVariable Integer id) {
+        calendarService.deleteById(id);
+        return ResultUtils.success(null);
+    }
 }
