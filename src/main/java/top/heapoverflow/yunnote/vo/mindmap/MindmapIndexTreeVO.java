@@ -18,6 +18,8 @@ public class MindmapIndexTreeVO {
     @JsonProperty("label")
     private String title;
 
+    private Integer detno;
+
     private List<MindmapIndexTreeVO> children;
 
     @Override

@@ -22,7 +22,7 @@ public class MindmapIndexController {
     private MindmapIndexService mindmapIndexService;
 
     /**
-     * 获取markdown的目录
+     * 获取mindmap的目录
      * @return
      */
     @GetMapping("/mindmap/index")

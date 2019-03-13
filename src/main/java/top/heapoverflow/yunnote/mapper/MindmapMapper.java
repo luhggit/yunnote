@@ -2,6 +2,7 @@ package top.heapoverflow.yunnote.mapper;
 
 import org.apache.ibatis.annotations.Delete;
 import org.apache.ibatis.annotations.Param;
+import org.apache.ibatis.annotations.Select;
 import org.apache.ibatis.annotations.Update;
 import top.heapoverflow.yunnote.entity.Mindmap;
 
@@ -65,4 +66,12 @@ public interface MindmapMapper {
      */
     @Delete("delete from mindmap where index_id=#{indexId}")
     void deleteByIndexId(@Param("indexId") Integer indexId);
+
+    /**
+     * 根据index id 查找
+     * @param indexId
+     * @return
+     */
+    @Select("select * from mindmap where index_id=#{indexId}")
+    Mindmap selectByIndexId(@Param("indexId") Integer indexId);
 }

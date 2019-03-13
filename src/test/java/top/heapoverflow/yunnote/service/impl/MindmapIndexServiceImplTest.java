@@ -93,6 +93,7 @@ public class MindmapIndexServiceImplTest {
         MindmapIndexTreeVO mindmapIndexTreeVO2 = mindmapIndexTreeVOS.get(1);
         assert "root1".equals(mindmapIndexTreeVO2.getTitle());
         assert 0 == mindmapIndexTreeVO2.getPid();
+        assert 1 == mindmapIndexTreeVO2.getDetno();
 
         List<MindmapIndexTreeVO> children2 = mindmapIndexTreeVO2.getChildren();
         assert 1 == children2.size();
