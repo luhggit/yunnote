@@ -18,11 +18,11 @@ public interface MarkdownService {
     void updateMarkdown(MarkdownUpdateVO markdownUpdateVO);
 
     /**
-     * 根据id查找markdown
-     * @param id markdown id
+     * 根据markdown index id查找markdown
+     * @param id markdown  index id
      * @return
      */
-    MarkdownMsgVO getMarkdownMsg(Integer id);
+    MarkdownMsgVO getMarkdownMsgByIndexId(Integer id);
 
     /**
      * 根据关键字进行搜索

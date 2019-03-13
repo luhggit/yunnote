@@ -87,6 +87,7 @@ public class MarkdownIndexServiceImplTest {
         MarkdownIndexTreeVO markdownIndexTreeVO = markdownIndexTreeVOS.get(0);
         assert "root2".equals(markdownIndexTreeVO.getTitle());
         assert 0 == markdownIndexTreeVO.getPid();
+        assert 2 == markdownIndexTreeVO.getDetno();
 
         List<MarkdownIndexTreeVO> children = markdownIndexTreeVO.getChildren();
         assert 1 == children.size();
@@ -95,6 +96,7 @@ public class MarkdownIndexServiceImplTest {
         MarkdownIndexTreeVO markdownIndexTreeVO2 = markdownIndexTreeVOS.get(1);
         assert "root1".equals(markdownIndexTreeVO2.getTitle());
         assert 0 == markdownIndexTreeVO2.getPid();
+        assert 1 == markdownIndexTreeVO2.getDetno();
 
         List<MarkdownIndexTreeVO> children2 = markdownIndexTreeVO2.getChildren();
         assert 1 == children2.size();

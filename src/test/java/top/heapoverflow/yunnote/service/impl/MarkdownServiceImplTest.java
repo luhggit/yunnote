@@ -73,11 +73,11 @@ public class MarkdownServiceImplTest {
     }
 
     /**
-     * 测试根据id获取
+     * 测试根据markdown index id获取
      */
     @Test
     public void testGetMarkdownMsg() {
-        MarkdownMsgVO markdownMsgVO = markdownService.getMarkdownMsg(markdown.getId());
+        MarkdownMsgVO markdownMsgVO = markdownService.getMarkdownMsgByIndexId(markdownIndex.getId());
         assert "root1".equals(markdownMsgVO.getTitle());
         assert "we".equals(markdownMsgVO.getMdContent());
         assert "q.ewho".equals(markdownMsgVO.getHtmlContent());

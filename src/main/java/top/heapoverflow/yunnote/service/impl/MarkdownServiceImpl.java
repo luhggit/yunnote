@@ -38,8 +38,8 @@ public class MarkdownServiceImpl implements MarkdownService {
      * @return
      */
     @Override
-    public MarkdownMsgVO getMarkdownMsg(Integer id) {
-        Markdown markdown = markdownMapper.selectByPrimaryKey(id);
+    public MarkdownMsgVO getMarkdownMsgByIndexId(Integer id) {
+        Markdown markdown = markdownMapper.selectByIndexId(id);
         MarkdownMsgVO markdownMsgVO = new MarkdownMsgVO();
         BeanUtils.copyProperties(markdown, markdownMsgVO);
         return markdownMsgVO;

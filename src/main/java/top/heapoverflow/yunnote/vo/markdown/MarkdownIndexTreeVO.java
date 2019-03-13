@@ -18,6 +18,8 @@ public class MarkdownIndexTreeVO {
     @JsonProperty("label")
     private String title;
 
+    private Integer detno;
+
     private List<MarkdownIndexTreeVO> children;
 
     @Override

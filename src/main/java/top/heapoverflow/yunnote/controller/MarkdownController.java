@@ -34,13 +34,13 @@ public class MarkdownController {
     }
 
     /**
-     * 根据id查找markdown
-     * @param id
+     * 根据markdown index id查找markdown
+     * @param indexId
      * @return
      */
-    @GetMapping("/markdown/{id}")
-    public BaseVO<MarkdownMsgVO> getMarkdownMsg(@PathVariable Integer id) {
-        return ResultUtils.success(markdownService.getMarkdownMsg(id));
+    @GetMapping("/markdown/{indexId}")
+    public BaseVO<MarkdownMsgVO> getMarkdownMsg(@PathVariable("indexId") Integer indexId) {
+        return ResultUtils.success(markdownService.getMarkdownMsgByIndexId(indexId));
     }
 
     /**
