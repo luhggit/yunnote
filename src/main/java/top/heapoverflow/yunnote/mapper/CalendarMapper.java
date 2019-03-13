@@ -1,6 +1,11 @@
 package top.heapoverflow.yunnote.mapper;
 
+import org.apache.ibatis.annotations.Param;
+import org.apache.ibatis.annotations.Select;
 import top.heapoverflow.yunnote.entity.Calendar;
+import top.heapoverflow.yunnote.query.CalendarThreeMonthQuery;
+
+import java.util.List;
 
 /**
  * @author luhg
@@ -47,4 +52,14 @@ public interface CalendarMapper {
      * @return
      */
     int updateByPrimaryKey(Calendar record);
+
+    /**
+     * 查询三个月的数据，上一个月、当月和下一个月
+     * @param query
+     * @return
+     */
+    @Select("select id, content from calendar where (month=#{query.month} and year=#{query.year}) or " +
+            "(month=#{query.preMonth} and year=#{query.preMonthYear}) or " +
+            "(month=#{query.nextMonth} and year=#{query.nextMonthYear})")
+    List<Calendar> queryThreeMonth(@Param("query")CalendarThreeMonthQuery query);
 }

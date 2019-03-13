@@ -69,9 +69,9 @@ public class RestExceptionHandler {
      */
     @ExceptionHandler(ServiceRuntimeException.class)
     @ResponseBody
-    public BaseVO<String> validExceptionHandler(ServiceRuntimeException exception) {
+    public BaseVO<Object> validExceptionHandler(ServiceRuntimeException exception) {
         log.error("业务异常:", exception);
-        return ResultUtils.fail(exception.getStatusEnum(), exception.getLocalizedMessage());
+        return ResultUtils.fail(exception.getStatusEnum(), exception.getData());
     }
 
     /**

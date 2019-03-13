@@ -12,9 +12,17 @@ import top.heapoverflow.yunnote.enums.StatusEnum;
 public class ServiceRuntimeException extends RuntimeException {
     private StatusEnum statusEnum;
 
+    private Object data;
+
     public ServiceRuntimeException(StatusEnum statusEnum) {
         super(statusEnum.getMsg());
         this.statusEnum = statusEnum;
+    }
+
+    public ServiceRuntimeException(StatusEnum statusEnum, Object data) {
+        super(statusEnum.getMsg());
+        this.statusEnum = statusEnum;
+        this.data = data;
     }
 
     public ServiceRuntimeException(String message) {

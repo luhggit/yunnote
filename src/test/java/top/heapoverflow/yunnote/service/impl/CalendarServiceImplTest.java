@@ -9,8 +9,13 @@ import org.springframework.test.context.junit4.SpringRunner;
 import org.springframework.transaction.annotation.Transactional;
 import top.heapoverflow.yunnote.entity.Calendar;
 import top.heapoverflow.yunnote.mapper.CalendarMapper;
+import top.heapoverflow.yunnote.service.CalendarService;
+import top.heapoverflow.yunnote.vo.calendar.CalendarQueryResultVO;
+import top.heapoverflow.yunnote.vo.calendar.CalendarQueryVO;
 
 import javax.annotation.Resource;
+
+import java.util.List;
 
 import static org.junit.Assert.*;
 
@@ -26,6 +31,8 @@ import static org.junit.Assert.*;
 public class CalendarServiceImplTest {
     @Resource
     private CalendarMapper calendarMapper;
+    @Resource
+    private CalendarService calendarService;
 
     private Calendar calendar;
 
@@ -36,6 +43,18 @@ public class CalendarServiceImplTest {
         calendar.setMonth(11);
         calendar.setYear(2019);
         calendarMapper.insertSelective(calendar);
+
+        Calendar calendar2 = new Calendar();
+        calendar2.setContent(".q22aewi");
+        calendar2.setMonth(0);
+        calendar2.setYear(2020);
+        calendarMapper.insertSelective(calendar2);
+
+        Calendar calendar3 = new Calendar();
+        calendar3.setContent(".q22aewi");
+        calendar3.setMonth(10);
+        calendar3.setYear(2019);
+        calendarMapper.insertSelective(calendar3);
     }
 
     /**
@@ -47,5 +66,17 @@ public class CalendarServiceImplTest {
         assert ".qaewi".equals(calendar2.getContent());
         assert 11 == calendar2.getMonth();
         assert 2019 == calendar2.getYear();
+    }
+
+    /**
+     * 测试根据年份和月份获取calendar
+     */
+    @Test
+    public void testGetCalendarEventByMonth() {
+        CalendarQueryVO calendarQueryVO = new CalendarQueryVO();
+        calendarQueryVO.setMonth(11);
+        calendarQueryVO.setYear(2019);
+        List<CalendarQueryResultVO> queryResultVOS = calendarService.getCalendarEventByMonth(calendarQueryVO);
+        assert 3 == queryResultVOS.size();
     }
 }
