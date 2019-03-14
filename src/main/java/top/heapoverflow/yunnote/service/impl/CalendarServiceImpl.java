@@ -9,6 +9,7 @@ import top.heapoverflow.yunnote.service.CalendarService;
 import top.heapoverflow.yunnote.vo.calendar.CalendarAddVO;
 import top.heapoverflow.yunnote.vo.calendar.CalendarQueryResultVO;
 import top.heapoverflow.yunnote.vo.calendar.CalendarQueryVO;
+import top.heapoverflow.yunnote.vo.calendar.CalendarUpdateVO;
 
 import javax.annotation.Resource;
 import java.util.List;
@@ -90,6 +91,17 @@ public class CalendarServiceImpl implements CalendarService {
     @Override
     public void deleteById(Integer id) {
        calendarMapper.deleteByPrimaryKey(id);
+    }
+
+    /**
+     * 更新calendar
+     * @param calendarUpdateVO
+     */
+    @Override
+    public void updateCalendar(CalendarUpdateVO calendarUpdateVO) {
+       Calendar calendar = new Calendar();
+       BeanUtils.copyProperties(calendarUpdateVO, calendar);
+       calendarMapper.updateByPrimaryKey(calendar);
     }
 }
 

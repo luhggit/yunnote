@@ -3,6 +3,7 @@ package top.heapoverflow.yunnote.service;
 import top.heapoverflow.yunnote.vo.calendar.CalendarAddVO;
 import top.heapoverflow.yunnote.vo.calendar.CalendarQueryResultVO;
 import top.heapoverflow.yunnote.vo.calendar.CalendarQueryVO;
+import top.heapoverflow.yunnote.vo.calendar.CalendarUpdateVO;
 
 import java.util.List;
 
@@ -31,4 +32,10 @@ public interface CalendarService {
      * @param id 主键
      */
     void deleteById(Integer id);
+
+    /**
+     * 更新calendar
+     * @param calendarUpdateVO
+     */
+    void updateCalendar(CalendarUpdateVO calendarUpdateVO);
 }

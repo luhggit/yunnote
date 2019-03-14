@@ -7,6 +7,7 @@ import top.heapoverflow.yunnote.vo.BaseVO;
 import top.heapoverflow.yunnote.vo.calendar.CalendarAddVO;
 import top.heapoverflow.yunnote.vo.calendar.CalendarQueryResultVO;
 import top.heapoverflow.yunnote.vo.calendar.CalendarQueryVO;
+import top.heapoverflow.yunnote.vo.calendar.CalendarUpdateVO;
 
 import javax.annotation.Resource;
 import java.util.List;
@@ -53,6 +54,17 @@ public class CalendarController {
     @DeleteMapping("/delete/{id}")
     public BaseVO<Void> deleteById(@PathVariable Integer id) {
         calendarService.deleteById(id);
+        return ResultUtils.success(null);
+    }
+
+    /**
+     * 更新calendar
+     * @param calendarUpdateVO
+     * @return
+     */
+    @PatchMapping("/save")
+    public BaseVO<Void> updateCalendar(@RequestBody CalendarUpdateVO calendarUpdateVO) {
+        calendarService.updateCalendar(calendarUpdateVO);
         return ResultUtils.success(null);
     }
 }

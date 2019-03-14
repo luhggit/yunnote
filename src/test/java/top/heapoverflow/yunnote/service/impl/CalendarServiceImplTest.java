@@ -12,6 +12,7 @@ import top.heapoverflow.yunnote.mapper.CalendarMapper;
 import top.heapoverflow.yunnote.service.CalendarService;
 import top.heapoverflow.yunnote.vo.calendar.CalendarQueryResultVO;
 import top.heapoverflow.yunnote.vo.calendar.CalendarQueryVO;
+import top.heapoverflow.yunnote.vo.calendar.CalendarUpdateVO;
 
 import javax.annotation.Resource;
 
@@ -89,5 +90,24 @@ public class CalendarServiceImplTest {
 
         Calendar calendar2 = calendarMapper.selectByPrimaryKey(calendar.getId());
         assert null == calendar2;
+    }
+
+    /**
+     * 测试更新
+     */
+    @Test
+    public void testUpdateCalendar() {
+        CalendarUpdateVO calendarUpdateVO = new CalendarUpdateVO();
+        calendarUpdateVO.setContent(".aie2..32");
+        calendarUpdateVO.setYear(238);
+        calendarUpdateVO.setMonth(98);
+        calendarUpdateVO.setId(calendar.getId());
+
+        calendarService.updateCalendar(calendarUpdateVO);
+
+        Calendar calendar3 = calendarMapper.selectByPrimaryKey(calendar.getId());
+        assert ".aie2..32".equals(calendar3.getContent());
+        assert 238 == calendar3.getYear();
+        assert 98 == calendar3.getMonth();
     }
 }
