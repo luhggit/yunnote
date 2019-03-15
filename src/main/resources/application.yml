@@ -9,9 +9,9 @@ server:
 
 logging:
   level:
-    top.heapoverflow.yunnote: debug #显示sql
-    org.springframework.web.client.RestTemplate: debug #显示resttemplate请求信息
+    top.heapoverflow.yunnote: debug
+    org.springframework.web.client.RestTemplate: debug
 
 mybatis:
-  mapper-locations: classpath:mapper/*.xml  #注意：一定要对应mapper映射xml文件的所在路径
-  type-aliases-package: top.heapoverflow.yunnote  # 注意：对应实体类的路径
+  mapper-locations: classpath:mapper/*.xml
+  type-aliases-package: top.heapoverflow.yunnote
