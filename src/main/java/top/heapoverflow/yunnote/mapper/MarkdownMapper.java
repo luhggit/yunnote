@@ -83,4 +83,11 @@ public interface MarkdownMapper {
      */
     @Select("select index_id from markdown where md_content like \"%\"#{keyword}\"%\" or title like \"%\"#{keyword}\"%\"")
     List<Integer> selectIndexIdByKeyword(@Param("keyword") String keyword);
+
+    /**
+     * 查找所有不同标题的markdown
+     * @return
+     */
+    @Select("select distinct first_class firstClass, second_class secondClass, title from markdown order by first_class asc, second_class asc, last_update_time asc")
+    List<Markdown> selectAllDistinctMarkdown();
 }

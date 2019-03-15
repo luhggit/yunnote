@@ -1,6 +1,7 @@
 package top.heapoverflow.yunnote.vo.calendar;
 
 import lombok.Data;
+import top.heapoverflow.yunnote.util.JsonUtils;
 
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.NotNull;
@@ -21,4 +22,9 @@ public class CalendarUpdateVO {
 
     @NotBlank(message = "content不能为空")
     private String content;
+
+    @Override
+    public String toString() {
+        return JsonUtils.toJson(this);
+    }
 }

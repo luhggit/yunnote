@@ -1,6 +1,7 @@
 package top.heapoverflow.yunnote.vo.calendar;
 
 import lombok.Data;
+import top.heapoverflow.yunnote.util.JsonUtils;
 
 /**
  * @author lhg
@@ -14,4 +15,9 @@ public class CalendarAddVO {
     private Integer year;
 
     private String content;
+
+    @Override
+    public String toString() {
+        return JsonUtils.toJson(this);
+    }
 }
